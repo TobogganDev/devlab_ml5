@@ -1,18 +1,24 @@
-let img;
+// Global variables
+let video;
 let detector;
+let detections = [];
 
+// Preload the model
 function preload() {
-  img = loadImage('2.jpg');
   detector = ml5.objectDetector('cocossd');
 }
 
+// Function that runs when the model is loaded
 function gotDetections(error, results) {
+  // If there is an error, log it
   if (error) {
     console.error(error);
   }
-  console.log(results);  
-  for (let i = 0; i < results.length; i++) {
-    let object = results[i];
+  // If there are no errors, save the results
+  detections = results;
+  // For every detection, draw a rectangle and label it
+  for (let i = 0; i < detections.length; i++) {
+    let object = detections[i];
     stroke(0,255,0);
     strokeWeight(4);
     noFill();
@@ -22,12 +28,20 @@ function gotDetections(error, results) {
     textSize(24);
     text(object.label, object.x + 10, object.y+24);
   }
+  // Run the model again (loop on itself because it's a video not a single image)
+  detector.detect(video, gotDetections);
 }
 
-
+// Setup function for canvas and video
 function setup() {
   createCanvas(640, 480);
-  // console.log(detector);
-  image(img, 0, 0);
-  detector.detect(img, gotDetections);
+  video = createCapture(VIDEO);
+  video.size(640, 480);
+  video.hide();
+  detector.detect(video, gotDetections);
+}
+
+// Draw function for video
+function draw() {
+  image(video, 0, 0);
 }
