@@ -2,7 +2,7 @@ let img;
 let detector;
 
 function preload() {
-  img = loadImage('1.jpg');
+  img = loadImage('2.jpg');
   detector = ml5.objectDetector('cocossd');
 }
 
@@ -22,8 +22,6 @@ function gotDetections(error, results) {
     textSize(24);
     text(object.label, object.x + 10, object.y+24);
   }
-  
-  
 }
 
 
