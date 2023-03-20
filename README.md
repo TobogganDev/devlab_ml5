@@ -1,6 +1,6 @@
 # Object detection with webcam
 
-Try it here : https://devlab-mj5.vercel.app/
+Try it here : https://devlab-ml5.vercel.app/
 You just have to autorise the webcam !
 
 ## How it works
