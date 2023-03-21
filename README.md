@@ -2,6 +2,7 @@
 
 Try it here : https://devlab-ml5.vercel.app/
 You just have to autorise the webcam !
+And maybe refresh the page (ctrl+f5) if it doesn't work
 
 ## How it works
 
